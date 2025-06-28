@@ -1,0 +1,30 @@
+pipeline{
+  agent none{
+    stage{
+      stage('BAck-End'){
+        agent{
+          docker{ image 'maven:3.8.1-adoptopenjdk-11'}
+        }
+        steps {
+          sh 'mvh --version'
+        }
+      }
+      stage('Front-End'){
+        agent{
+          docker{ image 'node:16-alpine'}
+        }
+        steps {
+          sh'node --version'
+        }
+      }
+      stage('DataBase'){
+        agent{
+          docker{ image'mysql:8.0.33'}
+        }
+        steps{
+          sh 'SELECT * FROM XYZ'
+        }
+      }
+    }
+  }
+        
