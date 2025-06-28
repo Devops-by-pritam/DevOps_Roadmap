@@ -1,0 +1,55 @@
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+java --version
+
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+>   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+>   https://pkg.jenkins.io/debian binary/ | sudo tee \
+>   /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
+sudo apt install jenkins -y
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+sudo systemctl status jenkins
+
+goto - browser---->
+type --> http://<--your ec2 public ip address-->:8080   hit -->enter
+in the terminal ---> sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+copy the password and paste it in the browers required field.
+after completeing the username and password ---> this is must otherwise after restarting jenkins their will be concicoencess.(recommendede to set password and username).
+--------------------------------------------------------
+Installing the docker 
+sudo apt update 
+sudo apt install docker.io
+
+Grant Jenkins user and ubuntu user permission to docker deamon.
+sudo su -
+root@ip:~# usermod -aG docker jenkins
+root@ip:~# usermod -aG docker ubuntu
+root@ip~# systemctl restart docker
+------------------------------
+in the browser
+http://<--your ec2 public ip address-->:8080/restart
+----------------------------------
+---In the Jenkins-----
+click settings logo(Manage Jenkins)
+availble plugins -->search for Docker pipeline ; click on install
+click on the restart (if you automaticly in the installed plugins tab)
+-----------setup finished-------------
+-------------------------------------------------------------------
+New Item   --> Name -->
+Select an item type --> beginners try pipelines(easier) -->
+In the pipeline menu select the "pipeline script from SCM"
+SCM -->Git
+Repository url-->https://github.com/Devops-by-tusk/DevOps_Roadmap
+branches to build --> master / main select based on your repo 
+
+script path -->
+
+and enter your first pipeline will be executed.
+
+
