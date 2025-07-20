@@ -1,7 +1,0 @@
-How to create aws account ?
-
-Visit -Aws management console.
- 
-sign in - 
-verify email -
-
